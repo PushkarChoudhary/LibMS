@@ -1,0 +1,13 @@
+{%extends "base.html" %}
+
+{% block content %}
+<form method="POST" enctype="multipart/form-data" action="{% url 'book-upload-excel' %}">
+    {% csrf_token %}
+    <div>
+        <label for="file">Upload Excel File:</label>
+        <input type="file" name="file" accept=".xlsx, .xls" required>
+    </div>
+    
+    <button type="submit">Upload</button>
+</form>
+{% endblock %}

@@ -1,0 +1,198 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LibMS | AHS Global{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        /* Base Styles */
+        html {
+            scroll-behavior: smooth; /* Smooth scrolling */
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Full viewport height */
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+
+        /* Main content area */
+        main {
+            flex: 1;
+            padding: 20px;
+            background-color: #ffffff; /* Consistent background color for content */
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(90deg, #4e54c8, #8f94fb);
+            color: white;
+            padding: 10px 0;
+            position: sticky; /* Sticks at the top */
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            background: #4e54c8;
+            color: white;
+            padding: 15px 0;
+            margin-top: auto; /* Push footer to the bottom */
+        }
+
+        /* Container Styles */
+        .container-main {
+            background: #ffffff;
+            padding: 30px;
+            padding-bottom: 100px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Button Styles */
+        .btn-primary, .btn-secondary {
+            font-size: 1rem;
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #4e54c8, #8f94fb);
+            border: none;
+        }
+
+        .btn-secondary {
+            background: #ffffff;
+            color: #4e54c8;
+            border: 2px solid #4e54c8;
+        }
+
+        .btn-secondary:hover {
+            background: #4e54c8;
+            color: white;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            main {
+                padding: 10px; /* Reduce padding on smaller screens */
+            }
+
+            .container-main {
+                padding: 20px;
+            }
+
+            footer {
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .btn-primary, .btn-secondary {
+                font-size: 0.9rem;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+    {% block extra_styles %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'home' %}">LibMS</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'about' %}">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'logout_confirmation' %}">Logout</a>
+                        </li>
+                        <li class="nav-item">
+                            {% if user.is_superuser %}
+                                <a class="nav-link" style="color:red;" href="#">{{ user.first_name }}</a>
+                            {% elif user.is_staff %}
+                                <a class="nav-link" style="color:yellow;" href="#">{{ user.first_name }}</a>
+                            {% else %}
+                                <a class="nav-link" style="color:white;" href="#">{{ user.first_name }}</a>
+                            {% endif %}
+                        </li>
+                        {% else %}
+                        <li class="nav-item dropdown">
+                            <a 
+                                class="nav-link dropdown-toggle text-white" 
+                                href="#" 
+                                id="loginDropdown" 
+                                role="button" 
+                                data-bs-toggle="dropdown" 
+                                aria-expanded="false">
+                                Login
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="loginDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'login' %}">User Login</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="{% url 'admin:login' %}">Admin Login</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="container-main">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    <footer style="background: #4e54c8; color: white; padding: 15px 0;">
+        <p>&copy; 2024 Sofenter Technologies. All Rights Reserved.</p>
+        <ul class="d-flex justify-content-center list-unstyled" style="padding: 0; margin: 0;">
+            <li class="mx-3">
+                <a class="text-white" href="{% url 'privacy' %}" style="text-decoration: none;">Privacy</a>
+            </li>
+            <li class="mx-3">
+                <a class="text-white" href="{% url 'terms_of_usage' %}" style="text-decoration: none;">Terms of Usage</a>
+            </li>
+            <li class="mx-3">
+                <a class="text-white" href="{% url 'contact_us' %}" style="text-decoration: none;">Contact Us</a>
+            </li>
+        </ul>
+    </footer>
+
+
+    
+    {% block script %}{% endblock %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

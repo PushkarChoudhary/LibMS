@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <div id="receipt-body" class="receipt card shadow-lg mx-auto" style="max-width: 800px; border-radius: 15px;">
+        <!-- Receipt Header -->
+        <div class="card-header text-center bg-primary text-white rounded-top">
+            <h4 class="fw-bold mb-0">Checkout Receipt - {{ receipt_id }}</h4>
+        </div>
+        
+        <!-- Organization Logo -->
+        <div class="text-center pt-4">
+            <img src="{% static 'images/logo.jpeg' %}" alt="Organization Logo" style="width: 150px; border-radius: 10px;">
+        </div>
+
+        <!-- User Details -->
+        <div class="card-body">
+            <div class="mb-4">
+                <h5 class="fw-bold text-muted">User Details</h5>
+                <p class="mb-1"><strong>Name:</strong> {{ user.get_full_name }}</p>
+                <p class="mb-1"><strong>Email:</strong> {{ user.email }}</p>
+                <p class="mb-1"><strong>Issued Date:</strong> {{ issued_date }}</p>
+                <p class="mb-1"><strong>Return Date:</strong> {{ return_date }}</p>
+            </div>
+
+            <!-- Book Details Table -->
+            <div class="table-responsive">
+                <h5 class="fw-bold text-muted mb-3">Book Details</h5>
+                <table class="table table-striped table-bordered" style="width: 100%; border-collapse: collapse;">
+                    <thead class="table-dark">
+                        <tr>
+                            <th style="width: 70%;">Book Name</th>
+                            <th style="width: 30%;">ISBN</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for book in books %}
+                        <tr>
+                            <td>{{ book.title }}</td>
+                            <td>{{ book.isbn }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Download Button -->
+    <div class="receipt card shadow-lg mx-auto" style="max-width: 800px; border-radius: 15px;">
+        <div class="card-footer text-center bg-light rounded-bottom">
+            <button onclick="downloadPDF('{{ receipt_id }}')" class="btn btn-primary w-50 py-2">
+                Download Receipt as PDF
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+<!-- Add script block -->
+{% block script %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+<script>
+    function downloadPDF(receipt_id) {
+        const element = document.getElementById('receipt-body');
+        html2pdf()
+            .from(element)
+            .set({
+                margin: 1,
+                filename: `Checkout_Receipt_${receipt_id}.pdf`,
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+            })
+            .save();
+    }
+</script>
+{% endblock script %}

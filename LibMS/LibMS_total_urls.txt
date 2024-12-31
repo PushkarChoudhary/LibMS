@@ -1,0 +1,62 @@
+/	lms_app.views.home_view	home
+/admin/	django.contrib.admin.sites.index	admin:index
+/admin/<app_label>/	django.contrib.admin.sites.app_index	admin:app_list
+/admin/<url>	django.contrib.admin.sites.catch_all_view
+/admin/auth/group/	django.contrib.admin.options.changelist_view	admin:auth_group_changelist
+/admin/auth/group/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/auth/group/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:auth_group_change
+/admin/auth/group/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:auth_group_delete
+/admin/auth/group/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:auth_group_history
+/admin/auth/group/add/	django.contrib.admin.options.add_view	admin:auth_group_add
+/admin/autocomplete/	django.contrib.admin.sites.autocomplete_view	admin:autocomplete
+/admin/jsi18n/	django.contrib.admin.sites.i18n_javascript	admin:jsi18n
+/admin/lms_app/book/	django.contrib.admin.options.changelist_view	admin:lms_app_book_changelist
+/admin/lms_app/book/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/lms_app/book/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:lms_app_book_change
+/admin/lms_app/book/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:lms_app_book_delete
+/admin/lms_app/book/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:lms_app_book_history
+/admin/lms_app/book/add/	django.contrib.admin.options.add_view	admin:lms_app_book_add
+/admin/lms_app/booktransaction/	django.contrib.admin.options.changelist_view	admin:lms_app_booktransaction_changelist
+/admin/lms_app/booktransaction/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/lms_app/booktransaction/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:lms_app_booktransaction_change
+/admin/lms_app/booktransaction/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:lms_app_booktransaction_delete
+/admin/lms_app/booktransaction/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:lms_app_booktransaction_history
+/admin/lms_app/booktransaction/add/	django.contrib.admin.options.add_view	admin:lms_app_booktransaction_add
+/admin/lms_app/borrowrequest/	django.contrib.admin.options.changelist_view	admin:lms_app_borrowrequest_changelist
+/admin/lms_app/borrowrequest/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/lms_app/borrowrequest/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:lms_app_borrowrequest_change
+/admin/lms_app/borrowrequest/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:lms_app_borrowrequest_delete
+/admin/lms_app/borrowrequest/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:lms_app_borrowrequest_history
+/admin/lms_app/borrowrequest/add/	django.contrib.admin.options.add_view	admin:lms_app_borrowrequest_add
+/admin/lms_app/customuser/	django.contrib.admin.options.changelist_view	admin:lms_app_customuser_changelist
+/admin/lms_app/customuser/<path:object_id>/	django.views.generic.base.RedirectView
+/admin/lms_app/customuser/<path:object_id>/change/	django.contrib.admin.options.change_view	admin:lms_app_customuser_change
+/admin/lms_app/customuser/<path:object_id>/delete/	django.contrib.admin.options.delete_view	admin:lms_app_customuser_delete
+/admin/lms_app/customuser/<path:object_id>/history/	django.contrib.admin.options.history_view	admin:lms_app_customuser_history
+/admin/lms_app/customuser/add/	django.contrib.admin.options.add_view	admin:lms_app_customuser_add
+/admin/login/	django.contrib.admin.sites.login	admin:login
+/admin/logout/	django.contrib.admin.sites.logout	admin:logout
+/admin/password_change/	django.contrib.admin.sites.password_change	admin:password_change
+/admin/password_change/done/	django.contrib.admin.sites.password_change_done	admin:password_change_done
+/admin/r/<int:content_type_id>/<path:object_id>/	django.contrib.contenttypes.views.shortcut	admin:view_on_site
+/api/	rest_framework.routers.APIRootView	api-root
+/api/<drf_format_suffix:format>	rest_framework.routers.APIRootView	api-root
+/api/books/	lms_app.views.BookViewSet	book-list
+/api/books/<pk>/	lms_app.views.BookViewSet	book-detail
+/api/books/<pk>\.<format>/	lms_app.views.BookViewSet	book-detail
+/api/books/upload_excel/	lms_app.views.BookViewSet	book-upload-excel
+/api/books\.<format>/	lms_app.views.BookViewSet	book-list
+/api/borrow-requests/	lms_app.views.BorrowRequestViewSet	borrow-request-list
+/api/borrow-requests/<pk>/	lms_app.views.BorrowRequestViewSet	borrow-request-detail
+/api/borrow-requests/<pk>\.<format>/	lms_app.views.BorrowRequestViewSet	borrow-request-detail
+/api/borrow-requests\.<format>/	lms_app.views.BorrowRequestViewSet	borrow-request-list
+/book_transaction/create/	lms_app.views.book_transaction_create_view	book_transaction-create
+/book_transaction/list/	lms_app.views.book_transaction_list_view	book_transaction_list
+/book_transaction/update/<int:pk>/	lms_app.views.book_transaction_update_view	book_transaction-update
+/books/<int:pk>/update/	lms_app.views.update_book	update_book
+/books/bulk_create/	lms_app.views.upload_excel_form	book-bulk-create
+/books/search/	lms_app.views.book_search_view	book-search
+/login/	lms_app.views.login_view	login
+/logout/	django.contrib.auth.views.LogoutView	logout
+/logout_confirmation/	lms_app.views.logout_confirmation	logout_confirmation
+/register/	lms_app.views.register_view	register

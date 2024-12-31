@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}About Us - LibMS{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-4">About Us</h1>
+    <p class="text-muted text-center mb-5">Learn more about our mission, vision, and values.</p>
+
+    <div class="row">
+        <!-- Mission Section -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-primary">Our Mission</h3>
+                    <p class="card-text">To empower communities by providing easy access to books, knowledge, and resources. Our goal is to foster a love for reading and learning in individuals of all ages.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vision Section -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-primary">Our Vision</h3>
+                    <p class="card-text">To become a leading platform in library management by combining traditional values of literacy with modern technology to serve communities better.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Values Section -->
+        <div class="col-md-12 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h3 class="card-title text-primary">Our Values</h3>
+                    <ul class="list-unstyled">
+                        <li><strong>Accessibility:</strong> Making knowledge and resources available to everyone.</li>
+                        <li><strong>Innovation:</strong> Continuously improving through technology and creativity.</li>
+                        <li><strong>Community:</strong> Building connections and fostering a sense of belonging.</li>
+                        <li><strong>Integrity:</strong> Upholding honesty and transparency in all our services.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="mt-5">
+        <h2 class="text-center mb-4">Meet the Team</h2>
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <img src="{% static 'images/team_member_1.png' %}" alt="Team Member 1" class="rounded-circle mb-2" style="width: 120px; height: 120px;">
+                <h5>John Doe</h5>
+                <p class="text-muted">Founder & CEO</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="{% static 'images/team_member_2.png' %}" alt="Team Member 2" class="rounded-circle mb-2" style="width: 120px; height: 120px;">
+                <h5>Jane Smith</h5>
+                <p class="text-muted">Head Librarian</p>
+            </div>
+            <div class="col-md-4 mb-4">
+                <img src="{% static 'images/team_member_3.png' %}" alt="Team Member 3" class="rounded-circle mb-2" style="width: 120px; height: 120px;">
+                <h5>Emily Johnson</h5>
+                <p class="text-muted">Technical Lead</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

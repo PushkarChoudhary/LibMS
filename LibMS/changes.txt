@@ -1,0 +1,72 @@
+1. Login issue with phone number. [Done]
+2. Apply fee per day after a number of days. (Implemented)(Test)
+> User can set no. of days. (Grace period set)
+> User can set fixed fee per day, to be applied after given no. of days.(Done-Admin can do)(Test)
+3. Change fee_per_day data type, from string to Boolean.(Todo)[DONE]
+4. Issue Book to Student [Implemented][Test][DONE]
+> Search book by name and author (Implemented).
+> On click on book after search, open book details. [Todo]
+> Add checkbox in front of all book names to select book to be issued.(Done)
+> Add submit button, onclick redirect to Book-Checkout Page.(Done)(Test)(Todo-checkout_receipt.html)[DONE]
+5. Create Book-Checkout Page.(Done)(Test)(Implemented)
+> On successful checkout, each book quantity will be reduced by 1 and create borrow requests for the user and books
+> Modify borrow request model to calculate fine for each day if return date is greater than a fixed number of days
+> If issue request for a book already submitted by a user than he/she cannot resubmit request till old request is expired
+6. Add feature to Update a Book in Manage Books. [Implemented][Also available in admin panel]
+7. Modify borrow request to show user and book(s) to be borrowed [Todo](Added receipt_id) [DONE]
+> Set submitted value as false by default and add attribute for this in model [Added attribute in model]
+> add issued and returned Boolean attributes for borrow requests(Todo)[DONE]
+> Admin/staff can set to True once book is issued or returned
+8. Logout user automatically after 3 hours, implement session authentications.[Todo]
+9. Create multiple books or bulk created [Feature Implemented]
+10. Make book name unique[DONE]
+11. Add common receipt _id for each checkout [Added attribute in model][Done]
+
+12. Each success/failure we have to implement pop-ups for that success/failure [Todo]
+
+13. Verify receipt (all user) or get all borrow requests for a user by mail (librarian/admin only) [Todo]
+14. Issue book, search borrow requests by receipt id and status of book, get detail and update borrow request status (librarian/admin only) [Todo][DONE]
+
+15. Make design full ready for presentation
+
+16. Deploy webapp (Azure appservices or aws ec2 or vercel Django)
+
+17. Integrate mailing functionalities to share key updates to stakeholders (sendgrid or twilio or aws ses)
+
+18. Integrate payment gateway, update checkout views for this and add payment related models (razorpay or juspay or paytm or bhim upi or free...)
+
+19. Implement throttling, rate limiting and endpoint protection
+
+20. Automation testing of frontend, backend and performance by load testing of production env replica in dev environment
+
+21. Postgre SQL for db
+
+22. Use faker to automatically populate test data in db
+
+23. Reset user password [Todo]
+
+24. Activate user account i.e. after approval from admin
+
+25. While searching in progress show animated loading page
+
+26. Image for books (later)
+Categories of material in library like book, journal, thesis, eBook, articles, collections
+Language attribute in book model
+
+27. Share button on book detail page to share book and bookmark button to add book in list (later)
+
+28. On click on user firstname open user details page (later)
+
+29. Privacy and ToS page and other generic footer contents [DONE]
+
+30. Create secret to store credentials used
+
+31. Add captcha for user registration and login [In Progress]
+
+32. OTP based two step verification for login and registration
+
+33. Implement organization or institute level seperation of data and portal
+
+34. Security testing for production app
+
+35. Add email from standard domains only for registration [Todo]

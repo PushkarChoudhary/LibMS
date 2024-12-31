@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block external_css %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+{% endblock %}
+
+{% block title %}Contact Us - LibMS{% endblock %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-4">Contact Us</h1>
+    <p class="text-muted text-center mb-5">Have a question or need assistance? Fill out the form below, and we'll get back to you as soon as possible.</p>
+
+    <div class="card shadow-sm mx-auto" style="max-width: 600px;">
+        <div class="card-body">
+            <form method="post" action="{% url 'contact_us' %}">
+                {% csrf_token %}
+
+                <!-- Name Field -->
+                <div class="mb-3">
+                    <label for="name" class="form-label fw-bold">Your Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter your full name" required>
+                </div>
+
+                <!-- Email Field -->
+                <div class="mb-3">
+                    <label for="email" class="form-label fw-bold">Your Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email address" required>
+                </div>
+
+                <!-- Subject Field -->
+                <div class="mb-3">
+                    <label for="subject" class="form-label fw-bold">Subject</label>
+                    <input type="text" id="subject" name="subject" class="form-control" placeholder="Enter the subject" required>
+                </div>
+
+                <!-- Message Field -->
+                <div class="mb-3">
+                    <label for="message" class="form-label fw-bold">Message</label>
+                    <textarea id="message" name="message" class="form-control" rows="5" placeholder="Write your message here" required></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

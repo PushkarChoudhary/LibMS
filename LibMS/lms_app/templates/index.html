@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Welcome to the Library Management System</h2>
+
+    {% if user.is_authenticated %}
+    <p class="text-center mb-5">Welcome, <strong>{{ user.first_name }}</strong>! Explore the available options below.</p>
+    {% else %}
+    <p class="text-center mb-5"></p>
+    {% endif %}
+
+
+    <div class="row text-center mb-4">
+        <div class="col-md-6 mb-3">
+            <a href="{% url 'register' %}" class="btn btn-primary w-100">Register</a>
+        </div>
+        <div class="col-md-6 mb-3">
+            <a href="{% url 'login' %}" class="btn btn-primary w-100">Login</a>
+        </div>
+    </div>
+
+    <div class="row text-center mb-4">
+        <div class="col-md-6 mb-3">
+            <a href="{% url 'book-search' %}" class="btn btn-primary w-100">Search Books</a>
+        </div>
+        <div class="col-md-6 mb-3">
+            <a href="{% url 'manage_borrow_request' %}" class="btn btn-primary w-100">Update Book Status</a>
+        </div>
+    </div>
+
+    <div class="row text-center mb-4">
+        <div class="col-md-6 mb-3">
+            <a href="{% url 'create-multiple-books' %}" class="btn btn-primary w-100">Add Multiple Books</a>
+        </div>
+        <div class="col-md-6 mb-3">
+            <a href="{% url 'create_borrow_request' %}" class="btn btn-primary w-100">Issue Book</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

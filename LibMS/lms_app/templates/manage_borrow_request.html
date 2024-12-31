@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Manage Borrow Requests</h2>
+
+    <!-- Form Section -->
+    <form method="GET" action="{% url 'manage_borrow_request' %}" class="bg-light p-4 rounded shadow-sm mb-5">
+        <div class="mb-3">
+            <label for="receipt_id" class="form-label fw-bold">Receipt ID:</label>
+            <input type="text" id="receipt_id" name="receipt_id" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label fw-bold">Book Status:</label>
+            <select id="status" name="status" class="form-select">
+                <option value="">All</option>
+                <option value="borrowed">Issued</option>
+                <option value="returned">Returned</option>
+            </select>
+        </div>
+        <div class="d-flex justify-content-between">
+            <button type="submit" name="submit" value="search" class="btn btn-primary">Search</button>
+            <button type="submit" name="submit" value="update" class="btn btn-secondary">Update</button>
+        </div>
+    </form>
+
+    <!-- Table Section -->
+    {% if borrow_requests %}
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover shadow-sm">
+            <thead class="table-dark">
+                <tr>
+                    <th>Receipt ID</th>
+                    <th>Book Title</th>
+                    <th>Borrow Date</th>
+                    <th>Return Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in borrow_requests %}
+                <tr>
+                    <td>{{ request.receipt_id }}</td>
+                    <td>{{ request.book.title }}</td>
+                    <td>{{ request.borrow_date }}</td>
+                    <td>{{ request.return_date }}</td>
+                    <td>
+                        <form method="POST" action="{% url 'update_single_borrow_request_status' request.id %}">
+                            {% csrf_token %}
+                            <div class="input-group">
+                                <select name="status" class="form-select">
+                                    <option value="issued" {% if request.issued == True %}selected{% endif %}>Issued</option>
+                                    <option value="returned" {% if request.returned == True %}selected{% endif %}>Returned</option>
+                                    <option value="requested" {% if request.issued == False and request.returned == False %}selected{% endif %}>Requested</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary btn-sm" style="z-index: 1; position: relative;">Update</button>
+                            </div>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="5" class="text-center text-muted">No book requests found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <p class="text-center text-muted">No borrow requests found.</p>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_styles %}
+<style>
+    /* Ensure buttons are positioned relative to their parent */
+    .input-group .btn {
+        position: relative; /* Fix floating issue */
+        z-index: 1; /* Keep buttons above background but below footer */
+    }
+
+    /* Prevent overlapping with the footer */
+    .table-responsive {
+        position: relative; /* Ensure the table respects boundaries */
+        z-index: 0; /* Keep the table below any floating elements */
+    }
+
+    /* Ensure buttons stay inside their respective rows */
+    .input-group {
+        display: flex; /* Ensure proper alignment */
+        align-items: center;
+    }
+
+    /* Footer should always stay on top */
+    footer {
+        position: relative;
+        z-index: 10;
+        background-color: #4e54c8;
+        color: white;
+        padding: 15px 0;
+        text-align: center;
+    }
+
+    /* Prevent table rows and buttons from floating out of bounds */
+    .table {
+        overflow: hidden;
+        margin-bottom: 0; /* Ensure it doesn't overlap the footer */
+    }
+</style>
+{% endblock %}

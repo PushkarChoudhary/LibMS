@@ -1,0 +1,10 @@
+/__pycache__/
+/lms_app/__pycache__/
+/migrations/
+/lms_app/migrations/
+.git
+.env
+venv
+lms_env
+db.sqlite3
+*.pyc
